@@ -1,11 +1,11 @@
 git:
   pkgs: 
     - git
-  git_config: /etc/gitconfig
-  git_config_src: salt://git/files/git_config
-  git_config_user: root
-  git_config_group: root
-  git_config_mode: '644'
+  config_file: /etc/gitconfig
+  config_src: salt://git/files/git_config
+  config_user: root
+  config_group: root
+  config_mode: '644'
   managed_userconfig: False
   install_from_source: False
   install_pkgrepo: False
@@ -22,6 +22,6 @@ git:
       - libz-dev
       - libssl-dev
       - build-essential
-  users: []
+  users: {}
 
 git_config: {}

@@ -4,6 +4,8 @@ git
 
 Install git either by source or by package
 
+See pillar.example and git/default.yaml for most options
+
 Tested minion OSes:
 - Ubuntu 12.04.3 Server AMD64
 - Ubuntu 14.04.1 LTS
@@ -21,6 +23,10 @@ Available states
 -------
 
 Install git via the method specified in the pillar data.
+
+``git.config``
+
+Manage git config (global by default)
 
 ``git.source``
 --------------

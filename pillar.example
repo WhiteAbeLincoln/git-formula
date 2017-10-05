@@ -1,26 +1,31 @@
 git:
-  install_from_source: True
-  # tells the state to include and require the git.pkgrepo state.
-  install_pkgrepo: True
-  # the following is only relevant when installing from source
-  source_install:
-    remove_system_package: True
-    version: 1.8.4.2
-    checksum: sha1=f2e9317703553b4215700605c15d0f3a30623a9d
-    source_root: /usr/local/src
-    install_prefix: /usr/local
-    pkg_deps:
-      - libcurl4-openssl-dev
-      - libexpat1-dev
-      - gettext
-      - libz-dev
-      - libssl-dev
-      - build-essential
+  managed_userconfig: True
+  users:
+    vagrant:
+      email: vagrant@minions.com
+      config_mode: '600'
+      git_config:
+        core:
+          excludesfile: /home/vagrant/.gitignore_global
+          editor: vim
+        push:
+          default: simple
 
 git_config:
-  user:
-    name: Example User
-    email: eu@example.com
-  core:
-    editor: emacs
-    autocrlf: true
+  alias:
+    branches: branch -a
+    commits: log
+    tags: tag
+    stashes: stash list
+    remotes: remote -v
+    unmerged: diff --name-only --diff-filter=U
+    unstage: reset -q HEAD --
+    discard: checkout --
+    uncommit: reset --mixed HEAD~
+    amend: commit --amend
+    nuke: "!git reset --hard HEAD && git clean -d -f"
+    graphd: log --graph --abbrev-commit --decorate --date=relative --all
+    graph: log --graph --oneline --decorate --all
+
+  web:
+    browser: xdg-open
