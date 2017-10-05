@@ -1,27 +1,26 @@
 {% from "git/map.jinja" import git_config with context %}
 
-{# macro for printing key value pair #}
-{# modified from https://github.com/saltstack-formulas/openssh-formula/blob/master/openssh/files/sshd_config#L7 #}
-{% macro render_option(category, keyword, default, config_dict=git_config) %}
-  {% set cat = config_dict.get(category, {}) %}
-  {% set value = cat.get(keyword, default) %}
-  {% if value is sameas true %}
-  {{ keyword }} = true
-  {% elif value is sameas false %}
-  {{ keyword }} = false
-  {% elif value is string or number %}
-  {{ keyword }} = {{ value }}
-  {% else %}
-  {% for single_value in value %}
-  {{ keyword }} = {{ single_value }}
-  {% endfor %}
-  {% endif %}
-{% endmacro %}
-
+{#- macro for printing key value pair -#}
+{#- modified from https://github.com/saltstack-formulas/openssh-formula/blob/master/openssh/files/sshd_config#L7 -#}
+{%- macro render_option(category, keyword, default, config_dict=git_config) -%}
+{%- set cat = config_dict.get(category, {}) -%}
+{%- set value = cat.get(keyword, default) -%}
+{%- if value is sameas true -%}
+{{ keyword }} = true
+{%- elif value is sameas false -%}
+{{ keyword }} = false
+{%- elif value is string or number -%}
+{{ keyword }} = {{ value }}
+{%- else -%}
+{%- for single_value in value -%}
+{{ keyword }} = {{ single_value }}
+{%- endfor -%}
+{%- endif -%}
+{%- endmacro -%}
 
 {% for cname,category in git_config.items() %}
 [{{cname}}]
-    {% for key, value in category.items() %}
-{{ render_option(cname, key, '') }}
-    {% endfor %}
-{% endfor %}
+{% for key, value in category.items() %}
+    {{ render_option(cname, key, '') }}
+{%- endfor %}
+{%- endfor %}
