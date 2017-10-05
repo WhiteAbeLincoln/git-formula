@@ -16,3 +16,11 @@ git:
       - libz-dev
       - libssl-dev
       - build-essential
+
+git_config:
+  user:
+    name: Example User
+    email: eu@example.com
+  core:
+    editor: emacs
+    autocrlf: true

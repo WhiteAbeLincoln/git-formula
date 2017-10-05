@@ -7,4 +7,4 @@ include:
 
 git:
   pkg.installed:
-    - name: {{ git_settings.git }}
+    - pkgs: {{ git_settings.pkgs }}
