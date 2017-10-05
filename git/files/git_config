@@ -19,7 +19,7 @@
 {% endmacro %}
 
 
-{% for cname,category in git_config %}
+{% for cname,category in git_config.items() %}
 [{{cname}}]
     {% for key, value in category.items() %}
 {{ render_option(cname, key, '') }}
