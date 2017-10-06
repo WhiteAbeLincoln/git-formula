@@ -16,7 +16,8 @@ differ from defaults.yaml
     },
     'Windows': {
         'pkgs': ['msysgit'],
-    }
+    },
+    'default': {}
 }, grain="os_family", merge=salt['pillar.get']('git:lookup')) %}
 
 {## merge the family_map with the default settings ##}
