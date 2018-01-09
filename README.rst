@@ -25,6 +25,7 @@ Available states
 Install git via the method specified in the pillar data.
 
 ``git.config``
+--------------
 
 Manage git config (global by default)
 
